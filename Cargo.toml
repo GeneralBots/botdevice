@@ -1,12 +1,12 @@
 [package]
-name = "botos"
+name = "botdevice"
 version = "1.0.0"
 edition = "2021"
-description = "BotOS - Android launcher powered by General Bots"
+description = "BotDevice - Android, HarmonyOS & IoT powered by General Bots"
 license = "AGPL-3.0"
 
 [lib]
-name = "botos_lib"
+name = "botdevice_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [dependencies]

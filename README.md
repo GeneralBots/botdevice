@@ -1,6 +1,6 @@
-# BotOS - Android & HarmonyOS powered by General Bots
+# BotDevice - Android, HarmonyOS & IoT powered by General Bots
 
-**BotOS** transforms any Android or HarmonyOS device into a dedicated General Bots system, removing all manufacturer bloatware (Samsung, Huawei, Xiaomi, Honor, etc) and replacing it with the GB interface.
+**BotDevice** transforms any Android, HarmonyOS, or embedded device into a dedicated General Bots system, removing all manufacturer bloatware (Samsung, Huawei, Xiaomi, Honor, etc) and replacing it with the GB interface.
 
 ## Supported Platforms
 
@@ -10,7 +10,7 @@
 
 ### Embedded / IoT
 - **Raspberry Pi** (Zero, 3, 4, 5) - Linux with LCD/HDMI display
-- **Orange Pi** - Budget Raspberry alternative
+- **Orange Pi** - Budget Raspberry alternative with NPU
 - **Banana Pi** - ARM boards with display
 - **BeagleBone** - Industrial IoT
 - **Arduino** (with ESP32/ESP8266) - OLED/LCD display + WiFi
@@ -31,14 +31,14 @@
 
 | Level | Requirements | What it does |
 |-------|-------------|--------------|
-| **1** | ADB only | Removes bloatware, installs BotOS as app |
-| **2** | Root + Magisk | GB boot animation, BotOS as system app |
-| **3** | Unlocked bootloader | Replaces entire Android with BotOS |
+| **1** | ADB only | Removes bloatware, installs BotDevice as app |
+| **2** | Root + Magisk | GB boot animation, BotDevice as system app |
+| **3** | Unlocked bootloader | Replaces entire Android with BotDevice |
 
 ## Quick Start
 
 ```bash
-cd botos/rom
+cd botdevice/rom
 ./install.sh
 ```
 
@@ -52,7 +52,7 @@ The installer automatically detects the device and shows available options.
 │  ┌─────────────────────────────────────────────────────────────────────────┐│
 │  │ Custom Android AOSP - Zero manufacturer apps                            ││
 │  │ GB boot animation from startup                                          ││
-│  │ BotOS integrated as single launcher                                     ││
+│  │ BotDevice integrated as single launcher                                 ││
 │  └─────────────────────────────────────────────────────────────────────────┘│
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                           LEVEL 2: MAGISK MODULE                            │
@@ -60,20 +60,20 @@ The installer automatically detects the device and shows available options.
 │  │ Original Android + Magisk                                               ││
 │  │ Bloatware removed via overlay                                           ││
 │  │ GB boot animation                                                       ││
-│  │ BotOS as privileged system app                                          ││
+│  │ BotDevice as privileged system app                                      ││
 │  └─────────────────────────────────────────────────────────────────────────┘│
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                          LEVEL 1: DEBLOAT + APP                             │
 │  ┌─────────────────────────────────────────────────────────────────────────┐│
 │  │ Original Android (Samsung/Huawei/Xiaomi/etc)                            ││
 │  │ Bloatware removed via ADB (no root)                                     ││
-│  │ BotOS installed as normal app                                           ││
+│  │ BotDevice installed as normal app                                       ││
 │  │ Can be set as default launcher                                          ││
 │  └─────────────────────────────────────────────────────────────────────────┘│
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                             BotOS App (Tauri)                               │
+│                           BotDevice App (Tauri)                             │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  botui/ui/suite        │  Tauri Android     │  src/lib.rs (Rust)           │
 │  (Web Interface)       │  (WebView + NDK)   │  (Backend + Hardware)        │
@@ -83,7 +83,7 @@ The installer automatically detects the device and shows available options.
 ## Project Structure
 
 ```
-botos/
+botdevice/
 ├── Cargo.toml                    # Rust/Tauri dependencies
 ├── tauri.conf.json               # Tauri config → botui/ui/suite
 ├── build.rs                      # Build script
@@ -113,12 +113,12 @@ botos/
     │   └── build-magisk-module.sh # Generate Magisk module
     └── gsi/
         ├── README.md             # GSI/AOSP instructions
-        └── device/pragmatismo/botos/  # AOSP device tree
+        └── device/pragmatismo/botdevice/  # AOSP device tree
 ```
 
 ## Prerequisites
 
-### To compile BotOS App
+### To compile BotDevice App
 
 ```bash
 # Rust and Android targets
@@ -145,7 +145,7 @@ sudo apt install librsvg2-bin imagemagick
 ## Building
 
 ```bash
-cd botos
+cd botdevice
 
 # Generate icons
 ./scripts/generate-icons.sh
@@ -162,7 +162,7 @@ cargo tauri android build --release
 ### Quick Method (Interactive)
 
 ```bash
-cd botos/rom
+cd botdevice/rom
 chmod +x install.sh
 ./install.sh
 ```
@@ -173,24 +173,24 @@ chmod +x install.sh
 
 ```bash
 # Connect device via USB (debug enabled)
-cd botos/rom/scripts
+cd botdevice/rom/scripts
 ./debloat.sh
 
 # Install APK
 adb install ../gen/android/app/build/outputs/apk/release/app-release.apk
 
-# Set as launcher: Home → BotOS → Always
+# Set as launcher: Home → BotDevice → Always
 ```
 
 #### Level 2: Magisk Module (With Root)
 
 ```bash
 # Generate module
-cd botos/rom/scripts
+cd botdevice/rom/scripts
 ./build-magisk-module.sh
 
 # Copy to device
-adb push botos-magisk-v1.0.zip /sdcard/
+adb push botdevice-magisk-v1.0.zip /sdcard/
 
 # On phone: Magisk → Modules → + → Select ZIP → Reboot
 ```
@@ -249,7 +249,7 @@ adb reboot
 cargo tauri android dev
 
 # Logs
-adb logcat -s BotOS:*
+adb logcat -s BotDevice:*
 ```
 
 ## Embedded Interface (LCD/Keyboard)
