@@ -1,39 +1,39 @@
 # BotOS - Android & HarmonyOS powered by General Bots
 
-**BotOS** transforma qualquer Android ou HarmonyOS em um sistema dedicado ao General Bots, removendo todo bloatware de fabricantes (Samsung, Huawei, Xiaomi, Honor, etc) e substituindo pela interface GB.
+**BotOS** transforms any Android or HarmonyOS device into a dedicated General Bots system, removing all manufacturer bloatware (Samsung, Huawei, Xiaomi, Honor, etc) and replacing it with the GB interface.
 
-## Plataformas Suportadas
+## Supported Platforms
 
 ### Mobile
 - **Android** (AOSP, Samsung One UI, Xiaomi MIUI, etc)
 - **HarmonyOS** (Huawei, Honor)
 
 ### Embedded / IoT
-- **Raspberry Pi** (Zero, 3, 4, 5) - Linux com display LCD/HDMI
-- **Orange Pi** - Alternativa econômica ao Raspberry
-- **Banana Pi** - Boards ARM com display
+- **Raspberry Pi** (Zero, 3, 4, 5) - Linux with LCD/HDMI display
+- **Orange Pi** - Budget Raspberry alternative
+- **Banana Pi** - ARM boards with display
 - **BeagleBone** - Industrial IoT
-- **Arduino** (com ESP32/ESP8266) - Display OLED/LCD + WiFi
-- **ESP32** - Displays TFT/OLED 
-- **Rock Pi** - Boards RK3399/RK3588
-- **NVIDIA Jetson** - AI no edge com display
+- **Arduino** (with ESP32/ESP8266) - OLED/LCD display + WiFi
+- **ESP32** - TFT/OLED displays
+- **Rock Pi** - RK3399/RK3588 boards
+- **NVIDIA Jetson** - Edge AI with display
 - **LattePanda** - x86 embedded
-- **ODROID** - Boards Hardkernel
+- **ODROID** - Hardkernel boards
 
-### Displays Suportados
+### Supported Displays
 - LCD Character (16x2, 20x4)
 - OLED (128x64, 128x32)
 - TFT/IPS (320x240, 480x320, 800x480)
 - E-ink/E-paper
-- HDMI (qualquer resolução)
+- HDMI (any resolution)
 
-## Níveis de Instalação
+## Installation Levels
 
-| Nível | Requisitos | O que faz |
-|-------|-----------|-----------|
-| **1** | Apenas ADB | Remove bloatware, instala BotOS como app |
-| **2** | Root + Magisk | Boot animation GB, BotOS como system app |
-| **3** | Bootloader desbloqueado | Substitui Android inteiro por BotOS |
+| Level | Requirements | What it does |
+|-------|-------------|--------------|
+| **1** | ADB only | Removes bloatware, installs BotOS as app |
+| **2** | Root + Magisk | GB boot animation, BotOS as system app |
+| **3** | Unlocked bootloader | Replaces entire Android with BotOS |
 
 ## Quick Start
 
@@ -42,33 +42,33 @@ cd botos/rom
 ./install.sh
 ```
 
-O instalador detecta automaticamente o dispositivo e mostra as opções disponíveis.
+The installer automatically detects the device and shows available options.
 
-## Arquitetura
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                              NÍVEL 3: GSI                                    │
+│                              LEVEL 3: GSI                                    │
 │  ┌─────────────────────────────────────────────────────────────────────────┐│
-│  │ Android AOSP customizado - Zero apps de fabricante                      ││
-│  │ Boot animation GB desde inicialização                                   ││
-│  │ BotOS integrado como launcher único                                     ││
+│  │ Custom Android AOSP - Zero manufacturer apps                            ││
+│  │ GB boot animation from startup                                          ││
+│  │ BotOS integrated as single launcher                                     ││
 │  └─────────────────────────────────────────────────────────────────────────┘│
 ├─────────────────────────────────────────────────────────────────────────────┤
-│                           NÍVEL 2: MAGISK MODULE                            │
+│                           LEVEL 2: MAGISK MODULE                            │
 │  ┌─────────────────────────────────────────────────────────────────────────┐│
-│  │ Android original + Magisk                                               ││
-│  │ Bloatware removido via overlay                                          ││
-│  │ Boot animation GB                                                       ││
-│  │ BotOS como system app privilegiado                                      ││
+│  │ Original Android + Magisk                                               ││
+│  │ Bloatware removed via overlay                                           ││
+│  │ GB boot animation                                                       ││
+│  │ BotOS as privileged system app                                          ││
 │  └─────────────────────────────────────────────────────────────────────────┘│
 ├─────────────────────────────────────────────────────────────────────────────┤
-│                          NÍVEL 1: DEBLOAT + APP                             │
+│                          LEVEL 1: DEBLOAT + APP                             │
 │  ┌─────────────────────────────────────────────────────────────────────────┐│
-│  │ Android original (Samsung/Huawei/Xiaomi/etc)                            ││
-│  │ Bloatware removido via ADB (sem root)                                   ││
-│  │ BotOS instalado como app normal                                         ││
-│  │ Pode ser definido como launcher padrão                                  ││
+│  │ Original Android (Samsung/Huawei/Xiaomi/etc)                            ││
+│  │ Bloatware removed via ADB (no root)                                     ││
+│  │ BotOS installed as normal app                                           ││
+│  │ Can be set as default launcher                                          ││
 │  └─────────────────────────────────────────────────────────────────────────┘│
 └─────────────────────────────────────────────────────────────────────────────┘
 
@@ -76,55 +76,55 @@ O instalador detecta automaticamente o dispositivo e mostra as opções disponí
 │                             BotOS App (Tauri)                               │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  botui/ui/suite        │  Tauri Android     │  src/lib.rs (Rust)           │
-│  (Interface Web)       │  (WebView + NDK)   │  (Backend + Hardware)        │
+│  (Web Interface)       │  (WebView + NDK)   │  (Backend + Hardware)        │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 botos/
-├── Cargo.toml                    # Dependências Rust/Tauri
-├── tauri.conf.json               # Config Tauri → botui/ui/suite
+├── Cargo.toml                    # Rust/Tauri dependencies
+├── tauri.conf.json               # Tauri config → botui/ui/suite
 ├── build.rs                      # Build script
-├── src/lib.rs                    # Entry point Android
+├── src/lib.rs                    # Android entry point
 │
 ├── icons/
-│   ├── gb-bot.svg                # Ícone fonte
-│   ├── icon.png (512x512)        # Ícone principal
-│   └── */ic_launcher.png         # Ícones por densidade
+│   ├── gb-bot.svg                # Source icon
+│   ├── icon.png (512x512)        # Main icon
+│   └── */ic_launcher.png         # Icons by density
 │
 ├── scripts/
-│   ├── generate-icons.sh         # Gera PNGs do SVG
-│   └── create-bootanimation.sh   # Gera animação de boot
+│   ├── generate-icons.sh         # Generate PNGs from SVG
+│   └── create-bootanimation.sh   # Generate boot animation
 │
 ├── capabilities/
-│   └── default.json              # Permissões Tauri
+│   └── default.json              # Tauri permissions
 │
-├── gen/android/                  # Projeto Android gerado
+├── gen/android/                  # Generated Android project
 │   └── app/src/main/
 │       ├── AndroidManifest.xml   # HOME intent (launcher)
-│       └── res/values/themes.xml # Tema dark GB
+│       └── res/values/themes.xml # GB dark theme
 │
-└── rom/                          # Tools de instalação
-    ├── install.sh                # Instalador interativo
+└── rom/                          # Installation tools
+    ├── install.sh                # Interactive installer
     ├── scripts/
-    │   ├── debloat.sh            # Remove bloatware (sem root)
-    │   └── build-magisk-module.sh # Gera módulo Magisk
+    │   ├── debloat.sh            # Remove bloatware (no root)
+    │   └── build-magisk-module.sh # Generate Magisk module
     └── gsi/
-        ├── README.md             # Instruções GSI/AOSP
-        └── device/pragmatismo/botos/  # Device tree AOSP
+        ├── README.md             # GSI/AOSP instructions
+        └── device/pragmatismo/botos/  # AOSP device tree
 ```
 
-## Pré-requisitos
+## Prerequisites
 
-### Para compilar BotOS App
+### To compile BotOS App
 
 ```bash
-# Rust e Android targets
+# Rust and Android targets
 rustup target add aarch64-linux-android armv7-linux-androideabi
 
-# Android SDK e NDK
+# Android SDK and NDK
 export ANDROID_HOME=$HOME/Android/Sdk
 export NDK_HOME=$ANDROID_HOME/ndk/25.2.9519653
 
@@ -132,34 +132,34 @@ export NDK_HOME=$ANDROID_HOME/ndk/25.2.9519653
 cargo install tauri-cli
 ```
 
-### Para instalar em dispositivos
+### To install on devices
 
 ```bash
 # ADB
 sudo apt install adb
 
-# Para gerar ícones/boot animation
+# To generate icons/boot animation
 sudo apt install librsvg2-bin imagemagick
 ```
 
-## Compilação
+## Building
 
 ```bash
 cd botos
 
-# Gerar ícones
+# Generate icons
 ./scripts/generate-icons.sh
 
-# Inicializar projeto Android
+# Initialize Android project
 cargo tauri android init
 
 # Build APK
 cargo tauri android build --release
 ```
 
-## Instalação
+## Installation
 
-### Método Rápido (Interativo)
+### Quick Method (Interactive)
 
 ```bash
 cd botos/rom
@@ -167,45 +167,45 @@ chmod +x install.sh
 ./install.sh
 ```
 
-### Método Manual
+### Manual Method
 
-#### Nível 1: Debloat + App (Sem Root)
+#### Level 1: Debloat + App (No Root)
 
 ```bash
-# Conectar dispositivo via USB (debug ativo)
+# Connect device via USB (debug enabled)
 cd botos/rom/scripts
 ./debloat.sh
 
-# Instalar APK
+# Install APK
 adb install ../gen/android/app/build/outputs/apk/release/app-release.apk
 
-# Definir como launcher: Home → BotOS → Sempre
+# Set as launcher: Home → BotOS → Always
 ```
 
-#### Nível 2: Magisk Module (Com Root)
+#### Level 2: Magisk Module (With Root)
 
 ```bash
-# Gerar módulo
+# Generate module
 cd botos/rom/scripts
 ./build-magisk-module.sh
 
-# Copiar para dispositivo
+# Copy to device
 adb push botos-magisk-v1.0.zip /sdcard/
 
-# No celular: Magisk → Modules → + → Selecionar ZIP → Reboot
+# On phone: Magisk → Modules → + → Select ZIP → Reboot
 ```
 
-#### Nível 3: GSI (Bootloader Desbloqueado)
+#### Level 3: GSI (Unlocked Bootloader)
 
-Veja instruções detalhadas em `rom/gsi/README.md`.
+See detailed instructions in `rom/gsi/README.md`.
 
-## Bloatware Removido
+## Bloatware Removed
 
-O debloat remove automaticamente:
+The debloat automatically removes:
 
 **Samsung One UI:**
 - Bixby, Samsung Pay, Samsung Pass
-- Apps duplicados (Email, Calendar, Browser)
+- Duplicate apps (Email, Calendar, Browser)
 - AR Zone, Game Launcher
 
 **Huawei EMUI/HarmonyOS:**
@@ -222,80 +222,80 @@ O debloat remove automaticamente:
 - MSA (analytics), Mi Apps
 - GetApps, Mi Cloud
 
-**Universal (todos):**
-- Facebook, Instagram pré-instalados
-- Netflix, Spotify pré-instalados
-- Jogos como Candy Crush
+**Universal (all):**
+- Pre-installed Facebook, Instagram
+- Pre-installed Netflix, Spotify
+- Games like Candy Crush
 
 ## Boot Animation
 
-Para customizar a animação de boot (requer root):
+To customize the boot animation (requires root):
 
 ```bash
-# Gerar animação
+# Generate animation
 ./scripts/create-bootanimation.sh
 
-# Instalar (root)
+# Install (root)
 adb root
 adb remount
 adb push bootanimation.zip /system/media/
 adb reboot
 ```
 
-## Desenvolvimento
+## Development
 
 ```bash
-# Dev mode (conecta ao dispositivo)
+# Dev mode (connects to device)
 cargo tauri android dev
 
 # Logs
 adb logcat -s BotOS:*
 ```
 
-## Parceria China
+## China Partnership
 
-BotOS foi criado para vendas/parcerias na China, oferecendo:
-- Celulares com sistema "limpo" - sem bloatware
-- Interface única conectada ao General Bots
-- Experiência simplificada para usuários finais
-- Controle total do dispositivo
-- Suporte a dispositivos HarmonyOS (Huawei/Honor)
-- Dispositivos IoT/Embedded (Raspberry Pi, ESP32, etc)
-- Quiosques e terminais de autoatendimento
+BotOS was created for sales/partnerships in China, offering:
+- Phones with "clean" system - no bloatware
+- Unique interface connected to General Bots
+- Simplified experience for end users
+- Full device control
+- Support for HarmonyOS devices (Huawei/Honor)
+- IoT/Embedded devices (Raspberry Pi, ESP32, etc)
+- Kiosks and self-service terminals
 
-## Interface Embedded (LCD/Teclado)
+## Embedded Interface (LCD/Keyboard)
 
-Para dispositivos com recursos limitados, use a interface embedded em `botui/ui/embedded/`:
+For devices with limited resources, use the embedded interface at `botui/ui/embedded/`:
 
 ```bash
-# Raspberry Pi com display LCD
+# Raspberry Pi with LCD display
 chromium-browser --kiosk --app=http://localhost:8088/embedded/
 
-# ESP32 com display TFT (via WebView)
-# Configure BOTSERVER_URL no firmware
+# ESP32 with TFT display (via WebView)
+# Configure BOTSERVER_URL in firmware
 
-# Terminal character mode
-# Use botui/ui/embedded/ com CONFIG.maxMsgLen ajustado
+# Character terminal mode
+# Use botui/ui/embedded/ with CONFIG.maxMsgLen adjusted
 ```
 
-### Características da Interface Embedded
-- Otimizada para displays 320x240 até 16x2 caracteres
-- Alto contraste (verde/preto, e-ink)
-- Baixo consumo de memória (max 10 mensagens)
-- Navegação por teclado (Enter envia, Esc limpa)
-- Reconexão automática
+### Embedded Interface Features
+- Optimized for displays 320x240 down to 16x2 characters
+- High contrast (green/black, e-ink)
+- Low memory usage (max 10 messages)
+- Keyboard navigation (Enter sends, Esc clears)
+- Auto reconnection
 
-## Recursos
+## Features
 
-- 🏠 **Launcher Mode**: Substitui home screen
-- 🤖 **Interface Chat**: botui/ui/suite
-- 🦀 **Backend Rust**: Via Tauri
-- 📍 **GPS**: Acesso a localização
-- 📷 **Câmera**: Via plugins Tauri
-- 🔔 **Notificações**: Push notifications
-- 🌐 **Internet**: Comunicação com botserver
-- 🎨 **Boot Animation**: Customizável com gb-bot.svg
+- 🏠 **Launcher Mode**: Replaces home screen
+- 🤖 **Chat Interface**: botui/ui/suite
+- 🦀 **Rust Backend**: Via Tauri
+- 📍 **GPS**: Location access
+- 📷 **Camera**: Via Tauri plugins
+- 🔔 **Notifications**: Push notifications
+- 🌐 **Internet**: Communication with botserver
+- 🎨 **Boot Animation**: Customizable with gb-bot.svg
 
-## Licença
+## License
 
 AGPL-3.0
