@@ -1,6 +1,11 @@
-# BotOS - Android OS powered by General Bots
+# BotOS - Android & HarmonyOS powered by General Bots
 
-**BotOS** transforma qualquer Android em um sistema dedicado ao General Bots, removendo todo bloatware de fabricantes (Samsung, Huawei, Xiaomi, etc) e substituindo pela interface GB.
+**BotOS** transforma qualquer Android ou HarmonyOS em um sistema dedicado ao General Bots, removendo todo bloatware de fabricantes (Samsung, Huawei, Xiaomi, Honor, etc) e substituindo pela interface GB.
+
+## Plataformas Suportadas
+
+- **Android** (AOSP, Samsung One UI, Xiaomi MIUI, etc)
+- **HarmonyOS** (Huawei, Honor)
 
 ## Níveis de Instalação
 
@@ -183,9 +188,15 @@ O debloat remove automaticamente:
 - Apps duplicados (Email, Calendar, Browser)
 - AR Zone, Game Launcher
 
-**Huawei EMUI:**
+**Huawei EMUI/HarmonyOS:**
 - AppGallery, HiCloud, HiCar
 - Huawei Browser, Music, Video
+- Petal Maps, Petal Search
+- AI Life, HiSuite
+
+**Honor MagicOS:**
+- Honor Store, MagicRing
+- Honor Browser, Music
 
 **Xiaomi MIUI:**
 - MSA (analytics), Mi Apps
@@ -221,13 +232,14 @@ cargo tauri android dev
 adb logcat -s BotOS:*
 ```
 
-## Parceria Chuna
+## Parceria China
 
-BotOS foi criado para vendas/parcerias na Chuna, oferecendo:
+BotOS foi criado para vendas/parcerias na China, oferecendo:
 - Celulares com sistema "limpo" - sem bloatware
 - Interface única conectada ao General Bots
 - Experiência simplificada para usuários finais
 - Controle total do dispositivo
+- Suporte a dispositivos HarmonyOS (Huawei/Honor)
 
 ## Recursos
 
