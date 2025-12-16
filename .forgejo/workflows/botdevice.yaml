@@ -16,6 +16,12 @@ jobs:
 
       - uses: actions/checkout@v4
 
+      - name: Checkout botlib dependency
+        uses: actions/checkout@v4
+        with:
+          repository: GeneralBots/botlib
+          path: ../botlib
+
       - name: Cache Cargo registry
         uses: actions/cache@v4
         with:
@@ -45,12 +51,10 @@ jobs:
           rustup target add i686-linux-android
 
       - name: Install Tauri CLI
-        run: cargo install tauri-cli
-
-      - name: Build botlib dependency
         run: |
-          cd ../botlib
-          cargo build --release --locked
+          if ! command -v cargo-tauri &> /dev/null; then
+            cargo install tauri-cli
+          fi
 
       - name: Compile ROM
         run: |
@@ -59,7 +63,7 @@ jobs:
 
       - name: Build Android APK
         run: |
-          cargo tauri android build --release
+          cargo tauri android build
 
       - name: Deploy ROM artifacts
         run: |
