@@ -4,6 +4,9 @@ version = "1.0.0"
 edition = "2021"
 description = "BotDevice - Android, HarmonyOS & IoT powered by General Bots"
 license = "AGPL-3.0"
+repository = "https://github.com/GeneralBots/BotServer"
+keywords = ["bot", "mobile", "android", "iot", "tauri"]
+categories = ["gui", "embedded"]
 
 [lib]
 name = "botdevice_lib"
@@ -37,3 +40,20 @@ tauri-build = { version = "2", features = ["codegen"] }
 [features]
 default = ["custom-protocol"]
 custom-protocol = ["tauri/custom-protocol"]
+
+[lints.rust]
+unused_imports = "warn"
+unused_variables = "warn"
+unused_mut = "warn"
+unsafe_code = "deny"
+missing_debug_implementations = "warn"
+
+[lints.clippy]
+all = "warn"
+pedantic = "warn"
+nursery = "warn"
+cargo = "warn"
+unwrap_used = "warn"
+expect_used = "warn"
+panic = "warn"
+todo = "warn"
