@@ -22,10 +22,7 @@
   },
   "bundle": {
     "active": true,
-    "targets": ["apk", "aab"],
-    "android": {
-      "minSdkVersion": 24
-    },
+    "targets": "all",
     "icon": [
       "icons/icon.png"
     ]

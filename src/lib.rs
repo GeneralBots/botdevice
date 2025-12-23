@@ -1,10 +1,3 @@
-//! BotOS - Android launcher powered by General Bots
-//!
-//! Minimal Android OS replacement using Tauri + botui
-//! - Replaces default launcher (home screen)
-//! - Access to camera, GPS, notifications
-//! - Connects to General Bots server
-
 use tauri::Manager;
 
 #[cfg(target_os = "android")]
@@ -21,7 +14,6 @@ fn init_logger() {
     env_logger::init();
 }
 
-/// Tauri command: Get device info
 #[tauri::command]
 fn get_device_info() -> serde_json::Value {
     serde_json::json!({
@@ -31,18 +23,17 @@ fn get_device_info() -> serde_json::Value {
     })
 }
 
-/// Tauri command: Send message to bot server
 #[tauri::command]
 async fn send_to_bot(message: String, server_url: String) -> Result<String, String> {
     let client = reqwest::Client::new();
-    
+
     let response = client
-        .post(&format!("{}/api/messages", server_url))
+        .post(format!("{server_url}/api/messages"))
         .json(&serde_json::json!({ "text": message }))
         .send()
         .await
         .map_err(|e| e.to_string())?;
-    
+
     response.text().await.map_err(|e| e.to_string())
 }
 
@@ -57,21 +48,19 @@ pub fn run() {
         .plugin(tauri_plugin_notification::init())
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_geolocation::init())
-        .invoke_handler(tauri::generate_handler![
-            get_device_info,
-            send_to_bot
-        ])
+        .invoke_handler(tauri::generate_handler![get_device_info, send_to_bot])
         .setup(|app| {
             log::info!("BotOS initialized, loading botui...");
-            
+
             #[cfg(debug_assertions)]
             {
-                let window = app.get_webview_window("main").unwrap();
-                window.open_devtools();
+                if let Some(window) = app.get_webview_window("main") {
+                    window.open_devtools();
+                }
             }
-            
+
             Ok(())
         })
         .run(tauri::generate_context!())
-        .expect("error running BotOS");
+        .unwrap_or_else(|e| log::error!("BotOS failed to start: {e}"));
 }
