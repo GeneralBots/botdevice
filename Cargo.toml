@@ -1,6 +1,6 @@
 [package]
 name = "botdevice"
-version = "1.0.0"
+version = "6.1.0"
 edition = "2021"
 description = "BotDevice - Android, HarmonyOS & IoT powered by General Bots"
 license = "AGPL-3.0"
@@ -14,29 +14,29 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 
 [dependencies]
 # Core from botlib
-botlib = { path = "../botlib", features = ["http-client"] }
+botlib = { workspace = true, features = ["http-client"] }
 
 # Tauri with mobile features
-tauri = { version = "2", features = ["unstable"] }
-tauri-plugin-dialog = "2"
-tauri-plugin-opener = "2"
-tauri-plugin-notification = "2"
-tauri-plugin-http = "2"
-tauri-plugin-geolocation = "2"
+tauri = { workspace = true }
+tauri-plugin-dialog = { workspace = true }
+tauri-plugin-opener = { workspace = true }
+tauri-plugin-notification = { workspace = true }
+tauri-plugin-http = { workspace = true }
+tauri-plugin-geolocation = { workspace = true }
 
 # Common
-anyhow = "1.0"
-chrono = { version = "0.4", features = ["serde"] }
-log = "0.4"
-android_logger = "0.14"
-env_logger = "0.11"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-tokio = { version = "1.41", features = ["rt-multi-thread", "macros"] }
-reqwest = { version = "0.12", features = ["json"] }
+anyhow = { workspace = true }
+chrono = { workspace = true, features = ["serde"] }
+log = { workspace = true }
+android_logger = { workspace = true }
+env_logger = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+tokio = { workspace = true, features = ["rt-multi-thread", "macros"] }
+reqwest = { workspace = true, features = ["json"] }
 
 [build-dependencies]
-tauri-build = { version = "2", features = ["codegen"] }
+tauri-build = { workspace = true, features = ["codegen"] }
 
 [features]
 default = ["custom-protocol"]
