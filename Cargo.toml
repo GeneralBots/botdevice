@@ -13,9 +13,6 @@ name = "botdevice_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [dependencies]
-# Core from botlib
-botlib = { workspace = true, features = ["http-client"] }
-
 # Tauri with mobile features
 tauri = { workspace = true }
 tauri-plugin-dialog = { workspace = true }
@@ -25,14 +22,10 @@ tauri-plugin-http = { workspace = true }
 tauri-plugin-geolocation = { workspace = true }
 
 # Common
-anyhow = { workspace = true }
-chrono = { workspace = true, features = ["serde"] }
 log = { workspace = true }
 android_logger = { workspace = true }
 env_logger = { workspace = true }
-serde = { workspace = true, features = ["derive"] }
 serde_json = { workspace = true }
-tokio = { workspace = true, features = ["rt-multi-thread", "macros"] }
 reqwest = { workspace = true, features = ["json"] }
 
 [build-dependencies]
