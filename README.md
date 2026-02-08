@@ -258,7 +258,7 @@ For devices with limited resources, use the embedded interface at `botui/ui/embe
 
 ```bash
 # Raspberry Pi with LCD display
-chromium-browser --kiosk --app=http://localhost:8088/embedded/
+chromium-browser --kiosk --app=http://localhost:9000/embedded/
 
 # ESP32 with TFT display (via WebView)
 # Configure BOTSERVER_URL in firmware
